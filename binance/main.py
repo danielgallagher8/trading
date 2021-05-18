@@ -18,8 +18,8 @@ alt_endpoints = ["https://api1.binance.com", "https://api2.binance.com", "https:
 class Binance:
     
     def __init__(self, *args, **kwargs):
-        self.api_key = self.get_json()['api_key']
-        self.secret_key = self.get_json()['secret_key']
+        #self.api_key = self.get_json()['api_key']
+        #self.secret_key = self.get_json()['secret_key']
         self.base_url = self.get_base_endpoint() + '/api/v3'
     
     def get_base_endpoint(self):
@@ -78,6 +78,10 @@ class Binance:
         else:
             return self.http_code(response.status_code)
     
+    def _post(self, path, params=None):
+        url = self.base_url + path
+        return url
+    
     def get_server_time(self):
         return self._get('/time')
     
@@ -108,6 +112,21 @@ class Binance:
     def get_avg_price(self, symbol):
         params = {'symbol':symbol}
         return self._get('/avgPrice', params)
+    
+    def get_daily_change(self, symbol):
+        params = {'symbol':symbol}
+        return self._get('/ticker/24hr', params)
+    
+    def get_price(self, symbol=None):
+        params = {'symbol':symbol}
+        return self._get('/ticker/price', params)
+    
+    def get_book_tickers(self, symbol):
+        params = {'symbol':symbol}
+        return self._get('/ticker/bookTicker', params)
+    
+    def post_order(self):
+        pass
     
 b = Binance()
     
