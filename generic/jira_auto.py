@@ -3,7 +3,7 @@ Script to automate jira processes and automatically raise issues
 """
 
 #Import libraries
-from jira import JIRA #, Issue
+from jira import JIRA
 from generic import load_json
 
 #Define classes
@@ -18,7 +18,7 @@ class Jira:
                     basic_auth=(self.data['username'], self.data['user_key']))
         return jira
     
-    def create_issue(self, proj, summ, desc):
+    def create_issue(self, desc, proj='TRAD', summ='Error on script'):
         self.jira.create_issue(project=proj,
                                summary=summ,
                                description=desc,
