@@ -71,7 +71,7 @@ class Binance:
         if params != None:
             params = self._params(params)
             query = urlencode(params)
-            url = f"{url}?{query}"
+            url = "{}?{}".format(url, query)
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
