@@ -10,9 +10,9 @@ b = main.Binance()
 
 
 while __name__ == '__main__':
-    d = database.Database()
     current_time = datetime.now()
     if current_time.strftime('%S') == '00':
+        d = database.Database()
         data_list = b.get_price()
         db = d.get_db()
         for data in data_list: 
